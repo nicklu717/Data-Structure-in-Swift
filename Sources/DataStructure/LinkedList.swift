@@ -5,17 +5,17 @@
 //  Created by 陸瑋恩 on 2021/6/21.
 //
 
-struct LinkedList<Value> {
+public struct LinkedList<Value> {
     
-    var head: Node<Value>?
-    var tail: Node<Value>?
+    public private(set) var head: Node<Value>?
+    public private(set) var tail: Node<Value>?
     
-    init(head: Node<Value>? = nil) {
+    public init(head: Node<Value>? = nil) {
         self.head = head
         self.tail = head
     }
     
-    init(headValue: Value) {
+    public init(headValue: Value) {
         self.init(head: Node<Value>(value: headValue))
     }
 }
