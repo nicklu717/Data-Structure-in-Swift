@@ -19,3 +19,14 @@ public struct LinkedList<Value> {
         self.init(head: Node<Value>(value: headValue))
     }
 }
+
+extension LinkedList: CustomStringConvertible {
+    
+    public var description: String {
+        if let head = head {
+            return "\(head)"
+        } else {
+            return "nil"
+        }
+    }
+}

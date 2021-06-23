@@ -15,3 +15,14 @@ open class Node<Value> {
         self.next = next
     }
 }
+
+extension Node: CustomStringConvertible {
+    
+    public var description: String {
+        var output = "\(value)"
+        if let next = next {
+            output += " -> \(next) "
+        }
+        return output
+    }
+}
