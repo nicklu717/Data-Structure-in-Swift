@@ -134,6 +134,105 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert((error as! LinkedList<Int>.Error) == .invalidIndex)
     }
     
+    // MARK: - Tests: Pop
+    func testPop() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        let poppedValue = linkedList.pop()
+        
+        XCTAssert(linkedList[0] == 1)
+        XCTAssert(linkedList[1] == 2)
+        XCTAssert(linkedList.count == 2)
+        XCTAssert(poppedValue == 0)
+    }
+    
+    func testPopWhenEmpty() {
+        linkedList = LinkedList()
+        let poppedValue = linkedList.pop()
+        
+        XCTAssert(linkedList.count == 0)
+        XCTAssert(poppedValue == nil)
+    }
+    
+    func testPopForTheOnlyValue() {
+        linkedList = LinkedList(values: [0])
+        let poppedValue = linkedList.pop()
+        
+        XCTAssert(linkedList.count == 0)
+        XCTAssert(poppedValue == 0)
+    }
+    
+    // MARK: - Tests: PopLast
+    func testPopLast() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        let poppedValue = linkedList.popLast()
+        
+        XCTAssert(linkedList[0] == 0)
+        XCTAssert(linkedList[1] == 1)
+        XCTAssert(linkedList.count == 2)
+        XCTAssert(poppedValue == 2)
+    }
+    
+    func testPopLastWhenEmpty() {
+        linkedList = LinkedList()
+        let poppedValue = linkedList.popLast()
+        
+        XCTAssert(linkedList.count == 0)
+        XCTAssert(poppedValue == nil)
+    }
+    
+    func testPopLastForTheOnlyValue() {
+        linkedList = LinkedList(values: [0])
+        let poppedValue = linkedList.popLast()
+        
+        XCTAssert(linkedList.count == 0)
+        XCTAssert(poppedValue == 0)
+    }
+    
+    // MARK: - Tests: Remove
+    func testRemove() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        let removedValue = linkedList.remove(at: 1)
+        
+        XCTAssert(linkedList[0] == 0)
+        XCTAssert(linkedList[1] == 2)
+        XCTAssert(linkedList.count == 2)
+        XCTAssert(removedValue == 1)
+    }
+    
+    func testRemoveAtLastIndex() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        let removedValue = linkedList.remove(at: 2)
+        
+        XCTAssert(linkedList[0] == 0)
+        XCTAssert(linkedList[1] == 1)
+        XCTAssert(linkedList.count == 2)
+        XCTAssert(removedValue == 2)
+    }
+    
+    func testRemoveForTheOnlyValue() {
+        linkedList = LinkedList(values: [0])
+        let removedValue = linkedList.remove(at: 0)
+        
+        XCTAssert(linkedList.count == 0)
+        XCTAssert(removedValue == 0)
+    }
+    
+    func testRemoveAtOutOfRangeIndex() {
+        linkedList = LinkedList()
+        let removedValue = linkedList.remove(at: 0)
+        
+        XCTAssert(linkedList.count == 0)
+        XCTAssert(removedValue == nil)
+    }
+    
+    func testRemoveAtInvalidIndex() {
+        linkedList = LinkedList()
+        let removedValue = linkedList.remove(at: -1)
+        
+        XCTAssert(linkedList.count == 0)
+        XCTAssert(removedValue == nil)
+    }
+    
     // MARK: - Tests: Description
     func testDescriptionWithNoNode() {
         linkedList = LinkedList()
