@@ -133,4 +133,19 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssertThrowsError(try linkedList.insert(0, at: -1)) { error = $0 }
         XCTAssert((error as! LinkedList<Int>.Error) == .invalidIndex)
     }
+    
+    // MARK: - Tests: Description
+    func testDescriptionWithNoNode() {
+        linkedList = LinkedList()
+        let output = String(describing: linkedList!)
+        
+        XCTAssert(output == "nil")
+    }
+    
+    func testDescriptionWithNodes() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        let output = String(describing: linkedList!)
+        
+        XCTAssert(output == "0 -> 1 -> 2")
+    }
 }
