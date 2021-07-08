@@ -34,12 +34,31 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(!linkedList.isEmpty)
     }
     
+    // MARK: - Tests: Get value
+    func testGetValue() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        
+        XCTAssert(linkedList.value(at: -1) == nil)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 1)
+        XCTAssert(linkedList.value(at: 2) == 2)
+        XCTAssert(linkedList.value(at: 3) == nil)
+    }
+    
+    func testGetValueWhenEmpty() {
+        linkedList = LinkedList()
+        
+        XCTAssert(linkedList.value(at: -1) == nil)
+        XCTAssert(linkedList.value(at: 0) == nil)
+    }
+    
     // MARK: - Tests: Push
     func testPushOneValue() {
         linkedList = LinkedList()
         linkedList.push(0)
         
-        XCTAssert(linkedList[0] == 0)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == nil)
         XCTAssert(linkedList.count == 1)
     }
     
@@ -49,9 +68,10 @@ final class LinkedListTestCase: XCTestCase {
         linkedList.push(1)
         linkedList.push(0)
         
-        XCTAssert(linkedList[0] == 0)
-        XCTAssert(linkedList[1] == 1)
-        XCTAssert(linkedList[2] == 2)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 1)
+        XCTAssert(linkedList.value(at: 2) == 2)
+        XCTAssert(linkedList.value(at: 3) == nil)
         XCTAssert(linkedList.count == 3)
     }
     
@@ -60,7 +80,8 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList()
         linkedList.append(0)
         
-        XCTAssert(linkedList[0] == 0)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == nil)
         XCTAssert(linkedList.count == 1)
     }
     
@@ -70,9 +91,10 @@ final class LinkedListTestCase: XCTestCase {
         linkedList.append(1)
         linkedList.append(2)
         
-        XCTAssert(linkedList[0] == 0)
-        XCTAssert(linkedList[1] == 1)
-        XCTAssert(linkedList[2] == 2)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 1)
+        XCTAssert(linkedList.value(at: 2) == 2)
+        XCTAssert(linkedList.value(at: 3) == nil)
         XCTAssert(linkedList.count == 3)
     }
     
@@ -81,10 +103,11 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0, 1, 2])
         XCTAssertNoThrow(try linkedList.insert(10, at: 2))
         
-        XCTAssert(linkedList[0] == 0)
-        XCTAssert(linkedList[1] == 1)
-        XCTAssert(linkedList[2] == 10)
-        XCTAssert(linkedList[3] == 2)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 1)
+        XCTAssert(linkedList.value(at: 2) == 10)
+        XCTAssert(linkedList.value(at: 3) == 2)
+        XCTAssert(linkedList.value(at: 4) == nil)
         XCTAssert(linkedList.count == 4)
     }
     
@@ -92,10 +115,11 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0, 1, 2])
         XCTAssertNoThrow(try linkedList.insert(-1, at: 0))
         
-        XCTAssert(linkedList[0] == -1)
-        XCTAssert(linkedList[1] == 0)
-        XCTAssert(linkedList[2] == 1)
-        XCTAssert(linkedList[3] == 2)
+        XCTAssert(linkedList.value(at: 0) == -1)
+        XCTAssert(linkedList.value(at: 1) == 0)
+        XCTAssert(linkedList.value(at: 2) == 1)
+        XCTAssert(linkedList.value(at: 3) == 2)
+        XCTAssert(linkedList.value(at: 4) == nil)
         XCTAssert(linkedList.count == 4)
     }
     
@@ -103,10 +127,11 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0, 1, 2])
         XCTAssertNoThrow(try linkedList.insert(3, at: 3))
         
-        XCTAssert(linkedList[0] == 0)
-        XCTAssert(linkedList[1] == 1)
-        XCTAssert(linkedList[2] == 2)
-        XCTAssert(linkedList[3] == 3)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 1)
+        XCTAssert(linkedList.value(at: 2) == 2)
+        XCTAssert(linkedList.value(at: 3) == 3)
+        XCTAssert(linkedList.value(at: 4) == nil)
         XCTAssert(linkedList.count == 4)
     }
     
@@ -114,7 +139,8 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList()
         XCTAssertNoThrow(try linkedList.insert(0, at: 0))
         
-        XCTAssert(linkedList[0] == 0)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == nil)
         XCTAssert(linkedList.count == 1)
     }
     
@@ -139,8 +165,9 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0, 1, 2])
         let poppedValue = linkedList.pop()
         
-        XCTAssert(linkedList[0] == 1)
-        XCTAssert(linkedList[1] == 2)
+        XCTAssert(linkedList.value(at: 0) == 1)
+        XCTAssert(linkedList.value(at: 1) == 2)
+        XCTAssert(linkedList.value(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
         XCTAssert(poppedValue == 0)
     }
@@ -149,6 +176,7 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList()
         let poppedValue = linkedList.pop()
         
+        XCTAssert(linkedList.value(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
         XCTAssert(poppedValue == nil)
     }
@@ -157,6 +185,7 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0])
         let poppedValue = linkedList.pop()
         
+        XCTAssert(linkedList.value(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
         XCTAssert(poppedValue == 0)
     }
@@ -166,8 +195,9 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0, 1, 2])
         let poppedValue = linkedList.popLast()
         
-        XCTAssert(linkedList[0] == 0)
-        XCTAssert(linkedList[1] == 1)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 1)
+        XCTAssert(linkedList.value(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
         XCTAssert(poppedValue == 2)
     }
@@ -176,6 +206,7 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList()
         let poppedValue = linkedList.popLast()
         
+        XCTAssert(linkedList.value(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
         XCTAssert(poppedValue == nil)
     }
@@ -184,6 +215,7 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0])
         let poppedValue = linkedList.popLast()
         
+        XCTAssert(linkedList.value(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
         XCTAssert(poppedValue == 0)
     }
@@ -193,18 +225,31 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0, 1, 2])
         let removedValue = linkedList.remove(at: 1)
         
-        XCTAssert(linkedList[0] == 0)
-        XCTAssert(linkedList[1] == 2)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 2)
+        XCTAssert(linkedList.value(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
         XCTAssert(removedValue == 1)
+    }
+    
+    func testRemoveAtFirstIndex() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        let removedValue = linkedList.remove(at: 0)
+        
+        XCTAssert(linkedList.value(at: 0) == 1)
+        XCTAssert(linkedList.value(at: 1) == 2)
+        XCTAssert(linkedList.value(at: 2) == nil)
+        XCTAssert(linkedList.count == 2)
+        XCTAssert(removedValue == 0)
     }
     
     func testRemoveAtLastIndex() {
         linkedList = LinkedList(values: [0, 1, 2])
         let removedValue = linkedList.remove(at: 2)
         
-        XCTAssert(linkedList[0] == 0)
-        XCTAssert(linkedList[1] == 1)
+        XCTAssert(linkedList.value(at: 0) == 0)
+        XCTAssert(linkedList.value(at: 1) == 1)
+        XCTAssert(linkedList.value(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
         XCTAssert(removedValue == 2)
     }
@@ -213,6 +258,7 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList(values: [0])
         let removedValue = linkedList.remove(at: 0)
         
+        XCTAssert(linkedList.value(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
         XCTAssert(removedValue == 0)
     }
@@ -221,6 +267,7 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList()
         let removedValue = linkedList.remove(at: 0)
         
+        XCTAssert(linkedList.value(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
         XCTAssert(removedValue == nil)
     }
@@ -229,6 +276,7 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList()
         let removedValue = linkedList.remove(at: -1)
         
+        XCTAssert(linkedList.value(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
         XCTAssert(removedValue == nil)
     }

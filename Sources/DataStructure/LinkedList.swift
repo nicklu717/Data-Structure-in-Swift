@@ -28,10 +28,8 @@ public struct LinkedList<Value> {
         }
     }
     
-    subscript(index: Int) -> Value {
-        let node = getNode(for: index)
-        guard let value = node?.value else { fatalError("Index out of range") }
-        return value
+    public func value(at index: Int) -> Value? {
+        return node(at: index)?.value
     }
     
     public mutating func push(_ value: Value) {
@@ -62,7 +60,7 @@ public struct LinkedList<Value> {
         } else if index == count {
             append(value)
         } else {
-            let previousNode = getNode(for: index - 1)
+            let previousNode = node(at: index - 1)
             previousNode?.next = Node<Value>(value: value, next: previousNode?.next)
             count += 1
         }
@@ -88,7 +86,8 @@ public struct LinkedList<Value> {
             return pop()
         } else {
             let poppedValue = tail?.value
-            tail = getNode(for: count - 2)
+            tail = node(at: count - 2)
+            tail?.next = nil
             count -= 1
             return poppedValue
         }
@@ -103,7 +102,7 @@ public struct LinkedList<Value> {
         } else if index == count - 1 {
             return popLast()
         } else {
-            let previousNode = getNode(for: index - 1)
+            let previousNode = node(at: index - 1)
             let removedValue = previousNode?.next?.value
             previousNode?.next = previousNode?.next?.next
             count -= 1
@@ -111,7 +110,8 @@ public struct LinkedList<Value> {
         }
     }
     
-    private func getNode(for index: Int) -> Node<Value>? {
+    private func node(at index: Int) -> Node<Value>? {
+        guard index >= 0 else { return nil }
         var node = head
         for _ in 0..<index {
             node = node?.next
