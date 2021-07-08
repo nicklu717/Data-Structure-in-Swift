@@ -120,6 +120,63 @@ public struct LinkedList<Value> {
     }
 }
 
+// MARK: - Collection
+extension LinkedList: Collection {
+    
+    public struct Index: Comparable {
+        
+        private let node: Node<Value>?
+        
+        public init(node: Node<Value>?) {
+            self.node = node
+        }
+        
+        public static func == (lhs: LinkedList<Value>.Index, rhs: LinkedList<Value>.Index) -> Bool {
+            return lhs.node === rhs.node
+        }
+        
+        public static func < (lhs: LinkedList<Value>.Index, rhs: LinkedList<Value>.Index) -> Bool {
+            guard lhs != rhs else { return false }
+            let nodes = sequence(first: lhs.node) { $0?.next }
+            return nodes.contains { $0 === rhs.node }
+        }
+        
+        public var next: Index {
+            return Index(node: node?.next)
+        }
+        
+        public var value: Value? {
+            return node?.value
+        }
+    }
+    
+    public var startIndex: Index {
+        return Index(node: head)
+    }
+    
+    public var endIndex: Index {
+        return Index(node: tail?.next)
+    }
+    
+    public func index(after i: Index) -> Index {
+        return i.next
+    }
+    
+    public subscript(position: Int) -> Value? {
+        guard position > 0 else { return self[startIndex] }
+        var index = startIndex
+        for _ in 0..<position {
+            index = index.next
+        }
+        return self[index]
+    }
+    
+    public subscript(position: Index) -> Value {
+        return position.value!
+    }
+}
+
+// MARK: - CustomStringConvertible
 extension LinkedList: CustomStringConvertible {
     
     public var description: String {

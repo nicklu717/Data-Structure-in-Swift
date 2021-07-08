@@ -281,6 +281,62 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(removedValue == nil)
     }
     
+    // MARK: - Tests: Collection
+    func testIndexEquality() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        
+        XCTAssert(linkedList.startIndex == linkedList.startIndex)
+        XCTAssert(linkedList.endIndex == linkedList.endIndex)
+        XCTAssert(linkedList.startIndex < linkedList.endIndex)
+    }
+    
+    func testIndexEqualityWhenEmpty() {
+        linkedList = LinkedList()
+        
+        XCTAssert(linkedList.startIndex == linkedList.startIndex)
+        XCTAssert(linkedList.endIndex == linkedList.endIndex)
+        XCTAssert(linkedList.startIndex == linkedList.endIndex)
+        XCTAssertFalse(linkedList.startIndex < linkedList.endIndex)
+    }
+    
+    func testStartAndEndIndex() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        
+        XCTAssert(linkedList.startIndex.value == 0)
+        XCTAssert(linkedList.startIndex.next.value == 1)
+        XCTAssert(linkedList.startIndex.next.next.value == 2)
+        XCTAssert(linkedList.startIndex.next.next.next.value == nil)
+        XCTAssert(linkedList.endIndex.value == nil)
+    }
+    
+    func testFirstAndEndIndexWhenEmpty() {
+        linkedList = LinkedList()
+        
+        XCTAssert(linkedList.startIndex.value == nil)
+        XCTAssert(linkedList.endIndex.value == nil)
+    }
+    
+    func testIndexAfterIndex() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        
+        var nextIndex = linkedList.index(after: linkedList.startIndex)
+        XCTAssert(nextIndex.value == 1)
+        
+        nextIndex = linkedList.index(after: nextIndex)
+        XCTAssert(nextIndex.value == 2)
+        
+        nextIndex = linkedList.index(after: nextIndex)
+        XCTAssert(nextIndex.value == nil)
+    }
+    
+    func testSubscript() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        
+        XCTAssert(linkedList[0] == 0)
+        XCTAssert(linkedList[1] == 1)
+        XCTAssert(linkedList[2] == 2)
+    }
+    
     // MARK: - Tests: Description
     func testDescriptionWithNoNode() {
         linkedList = LinkedList()
