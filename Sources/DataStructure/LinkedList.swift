@@ -12,6 +12,7 @@ public struct LinkedList<Value> {
         case indexOutOfRange
     }
     
+    // MARK: - Properties
     private var head: Node<Value>?
     private var tail: Node<Value>?
     
@@ -20,6 +21,7 @@ public struct LinkedList<Value> {
         return count == 0
     }
     
+    // MARK: - Initializer
     public init() {}
     
     public init(values: [Value]) {
@@ -28,11 +30,14 @@ public struct LinkedList<Value> {
         }
     }
     
+    // MARK: - Methods
     public func value(at index: Int) -> Value? {
         return node(at: index)?.value
     }
     
     public mutating func push(_ value: Value) {
+        copyNodes()
+        
         head = Node<Value>(value: value, next: head)
         count += 1
         if tail == nil {
@@ -41,6 +46,8 @@ public struct LinkedList<Value> {
     }
     
     public mutating func append(_ value: Value) {
+        copyNodes()
+        
         guard !isEmpty else {
             push(value)
             return
@@ -51,6 +58,8 @@ public struct LinkedList<Value> {
     }
     
     public mutating func insert(_ value: Value, at index: Int) throws {
+        copyNodes()
+        
         if index < 0 {
             throw Error.invalidIndex
         } else if index > count {
@@ -68,6 +77,8 @@ public struct LinkedList<Value> {
     
     @discardableResult
     public mutating func pop() -> Value? {
+        copyNodes()
+        
         let poppedValue = head?.value
         head = head?.next
         if !isEmpty {
@@ -82,6 +93,8 @@ public struct LinkedList<Value> {
     
     @discardableResult
     public mutating func popLast() -> Value? {
+        copyNodes()
+        
         if count <= 1 {
             return pop()
         } else {
@@ -95,6 +108,8 @@ public struct LinkedList<Value> {
     
     @discardableResult
     public mutating func remove(at index: Int) -> Value? {
+        copyNodes()
+        
         if index < 0 || index >= count {
             return nil
         } else if index == 0 {
@@ -110,6 +125,7 @@ public struct LinkedList<Value> {
         }
     }
     
+    // MARK: - Helpers
     private func node(at index: Int) -> Node<Value>? {
         guard index >= 0 else { return nil }
         var node = head
@@ -117,6 +133,19 @@ public struct LinkedList<Value> {
             node = node?.next
         }
         return node
+    }
+    
+    private mutating func copyNodes() {
+        guard var oldNode = head else { return }
+        head = Node<Value>(value: oldNode.value)
+        
+        var newNode = head
+        while let nextOldNode = oldNode.next {
+            newNode?.next = Node<Value>(value: nextOldNode.value)
+            newNode = newNode?.next
+            oldNode = nextOldNode
+        }
+        tail = newNode
     }
 }
 

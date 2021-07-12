@@ -337,6 +337,163 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(linkedList[2] == 2)
     }
     
+    // MARK: - Tests: Copy on write
+    func testCopyNodesWithPush() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2")
+        
+        newLinkedList.push(-1)
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "-1 -> 0 -> 1 -> 2")
+    }
+    
+    func testCopyNodesWithPushWhenEmpty() {
+        linkedList = LinkedList()
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+        
+        newLinkedList.push(0)
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "0")
+    }
+    
+    func testCopyNodesWithAppend() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2")
+        
+        newLinkedList.append(3)
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2 -> 3")
+    }
+    
+    func testCopyNodesWithAppendWhenEmpty() {
+        linkedList = LinkedList()
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+        
+        newLinkedList.append(0)
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "0")
+    }
+    
+    func testCopyNodesWithInsert() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2")
+        
+        try! newLinkedList.insert(10, at: 1)
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 10 -> 1 -> 2")
+    }
+    
+    func testCopyNodesWithInsertWhenEmpty() {
+        linkedList = LinkedList()
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+        
+        try! newLinkedList.insert(0, at: 0)
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "0")
+    }
+    
+    func testCopyNodesWithPop() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2")
+        
+        newLinkedList.pop()
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "1 -> 2")
+    }
+    
+    func testCopyNodesWithPopWhenEmpty() {
+        linkedList = LinkedList()
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+        
+        newLinkedList.pop()
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+    }
+    
+    func testCopyNodesWithPopLast() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2")
+        
+        newLinkedList.popLast()
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1")
+    }
+    
+    func testCopyNodesWithPopLastWhenEmpty() {
+        linkedList = LinkedList()
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+        
+        newLinkedList.popLast()
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+    }
+    
+    func testCopyNodesWithRemove() {
+        linkedList = LinkedList(values: [0, 1, 2])
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2")
+        
+        newLinkedList.remove(at: 1)
+        
+        XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
+        XCTAssert(String(describing: newLinkedList) == "0 -> 2")
+    }
+    
+    func testCopyNodesWithRemoveWhenEmpty() {
+        linkedList = LinkedList()
+        var newLinkedList = linkedList!
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+        
+        newLinkedList.remove(at: 0)
+        
+        XCTAssert(String(describing: linkedList!) == "nil")
+        XCTAssert(String(describing: newLinkedList) == "nil")
+    }
+    
     // MARK: - Tests: Description
     func testDescriptionWithNoNode() {
         linkedList = LinkedList()
