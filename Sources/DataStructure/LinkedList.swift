@@ -22,9 +22,7 @@ public struct LinkedList<Value> {
     }
     
     // MARK: - Initializer
-    public init() {}
-    
-    public init(values: [Value]) {
+    public init(values: [Value] = []) {
         values.forEach {
             append($0)
         }
