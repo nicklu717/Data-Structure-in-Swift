@@ -338,7 +338,7 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     // MARK: - Tests: Copy on write
-    func testCopyNodesWithPush() {
+    func testCopyOnWriteWithPush() {
         linkedList = LinkedList(values: [0, 1, 2])
         var newLinkedList = linkedList!
         
@@ -351,7 +351,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "-1 -> 0 -> 1 -> 2")
     }
     
-    func testCopyNodesWithPushWhenEmpty() {
+    func testCopyOnWriteWithPushWhenEmpty() {
         linkedList = LinkedList()
         var newLinkedList = linkedList!
         
@@ -364,7 +364,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "0")
     }
     
-    func testCopyNodesWithAppend() {
+    func testCopyOnWriteWithAppend() {
         linkedList = LinkedList(values: [0, 1, 2])
         var newLinkedList = linkedList!
         
@@ -377,7 +377,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "0 -> 1 -> 2 -> 3")
     }
     
-    func testCopyNodesWithAppendWhenEmpty() {
+    func testCopyOnWriteWithAppendWhenEmpty() {
         linkedList = LinkedList()
         var newLinkedList = linkedList!
         
@@ -390,7 +390,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "0")
     }
     
-    func testCopyNodesWithInsert() {
+    func testCopyOnWriteWithInsert() {
         linkedList = LinkedList(values: [0, 1, 2])
         var newLinkedList = linkedList!
         
@@ -403,7 +403,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "0 -> 10 -> 1 -> 2")
     }
     
-    func testCopyNodesWithInsertWhenEmpty() {
+    func testCopyOnWriteWithInsertWhenEmpty() {
         linkedList = LinkedList()
         var newLinkedList = linkedList!
         
@@ -416,7 +416,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "0")
     }
     
-    func testCopyNodesWithPop() {
+    func testCopyOnWriteWithPop() {
         linkedList = LinkedList(values: [0, 1, 2])
         var newLinkedList = linkedList!
         
@@ -429,7 +429,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "1 -> 2")
     }
     
-    func testCopyNodesWithPopWhenEmpty() {
+    func testCopyOnWriteWithPopWhenEmpty() {
         linkedList = LinkedList()
         var newLinkedList = linkedList!
         
@@ -442,7 +442,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "nil")
     }
     
-    func testCopyNodesWithPopLast() {
+    func testCopyOnWriteWithPopLast() {
         linkedList = LinkedList(values: [0, 1, 2])
         var newLinkedList = linkedList!
         
@@ -455,7 +455,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "0 -> 1")
     }
     
-    func testCopyNodesWithPopLastWhenEmpty() {
+    func testCopyOnWriteWithPopLastWhenEmpty() {
         linkedList = LinkedList()
         var newLinkedList = linkedList!
         
@@ -468,7 +468,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "nil")
     }
     
-    func testCopyNodesWithRemove() {
+    func testCopyOnWriteWithRemove() {
         linkedList = LinkedList(values: [0, 1, 2])
         var newLinkedList = linkedList!
         
@@ -481,7 +481,7 @@ final class LinkedListTestCase: XCTestCase {
         XCTAssert(String(describing: newLinkedList) == "0 -> 2")
     }
     
-    func testCopyNodesWithRemoveWhenEmpty() {
+    func testCopyOnWriteWithRemoveWhenEmpty() {
         linkedList = LinkedList()
         var newLinkedList = linkedList!
         

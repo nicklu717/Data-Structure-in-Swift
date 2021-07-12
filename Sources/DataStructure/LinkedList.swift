@@ -36,7 +36,7 @@ public struct LinkedList<Value> {
     }
     
     public mutating func push(_ value: Value) {
-        copyNodes()
+        copyOnWrite()
         
         head = Node<Value>(value: value, next: head)
         count += 1
@@ -46,7 +46,7 @@ public struct LinkedList<Value> {
     }
     
     public mutating func append(_ value: Value) {
-        copyNodes()
+        copyOnWrite()
         
         guard !isEmpty else {
             push(value)
@@ -58,7 +58,7 @@ public struct LinkedList<Value> {
     }
     
     public mutating func insert(_ value: Value, at index: Int) throws {
-        copyNodes()
+        copyOnWrite()
         
         if index < 0 {
             throw Error.invalidIndex
@@ -77,7 +77,7 @@ public struct LinkedList<Value> {
     
     @discardableResult
     public mutating func pop() -> Value? {
-        copyNodes()
+        copyOnWrite()
         
         let poppedValue = head?.value
         head = head?.next
@@ -93,7 +93,7 @@ public struct LinkedList<Value> {
     
     @discardableResult
     public mutating func popLast() -> Value? {
-        copyNodes()
+        copyOnWrite()
         
         if count <= 1 {
             return pop()
@@ -108,7 +108,7 @@ public struct LinkedList<Value> {
     
     @discardableResult
     public mutating func remove(at index: Int) -> Value? {
-        copyNodes()
+        copyOnWrite()
         
         if index < 0 || index >= count {
             return nil
@@ -135,7 +135,9 @@ public struct LinkedList<Value> {
         return node
     }
     
-    private mutating func copyNodes() {
+    private mutating func copyOnWrite() {
+        guard !isKnownUniquelyReferenced(&head) else { return }
+        
         guard var oldNode = head else { return }
         head = Node<Value>(value: oldNode.value)
         
