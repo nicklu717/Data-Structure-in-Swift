@@ -28,110 +28,110 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testInitWithArray() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         
         XCTAssert(linkedList.count == 3)
         XCTAssert(!linkedList.isEmpty)
     }
     
-    // MARK: - Tests: Get value
-    func testGetValue() {
-        linkedList = LinkedList(values: [0, 1, 2])
+    // MARK: - Tests: Get element
+    func testGetElement() {
+        linkedList = LinkedList(elements: [0, 1, 2])
         
-        XCTAssert(linkedList.value(at: -1) == nil)
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 1)
-        XCTAssert(linkedList.value(at: 2) == 2)
-        XCTAssert(linkedList.value(at: 3) == nil)
+        XCTAssert(linkedList.element(at: -1) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 1)
+        XCTAssert(linkedList.element(at: 2) == 2)
+        XCTAssert(linkedList.element(at: 3) == nil)
     }
     
-    func testGetValueWhenEmpty() {
+    func testGetElementWhenEmpty() {
         linkedList = LinkedList()
         
-        XCTAssert(linkedList.value(at: -1) == nil)
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: -1) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
     }
     
     // MARK: - Tests: Push
-    func testPushOneValue() {
+    func testPushOneElement() {
         linkedList = LinkedList()
         linkedList.push(0)
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == nil)
         XCTAssert(linkedList.count == 1)
     }
     
-    func testPushMultipleValues() {
+    func testPushMultipleElements() {
         linkedList = LinkedList()
         linkedList.push(2)
         linkedList.push(1)
         linkedList.push(0)
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 1)
-        XCTAssert(linkedList.value(at: 2) == 2)
-        XCTAssert(linkedList.value(at: 3) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 1)
+        XCTAssert(linkedList.element(at: 2) == 2)
+        XCTAssert(linkedList.element(at: 3) == nil)
         XCTAssert(linkedList.count == 3)
     }
     
     // MARK: - Tests: Append
-    func testAppendOneValue() {
+    func testAppendOneElement() {
         linkedList = LinkedList()
         linkedList.append(0)
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == nil)
         XCTAssert(linkedList.count == 1)
     }
     
-    func testAppendMultipleValues() {
+    func testAppendMultipleElements() {
         linkedList = LinkedList()
         linkedList.append(0)
         linkedList.append(1)
         linkedList.append(2)
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 1)
-        XCTAssert(linkedList.value(at: 2) == 2)
-        XCTAssert(linkedList.value(at: 3) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 1)
+        XCTAssert(linkedList.element(at: 2) == 2)
+        XCTAssert(linkedList.element(at: 3) == nil)
         XCTAssert(linkedList.count == 3)
     }
     
     // MARK: - Tests: Insert
     func testInsert() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         XCTAssertNoThrow(try linkedList.insert(10, at: 2))
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 1)
-        XCTAssert(linkedList.value(at: 2) == 10)
-        XCTAssert(linkedList.value(at: 3) == 2)
-        XCTAssert(linkedList.value(at: 4) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 1)
+        XCTAssert(linkedList.element(at: 2) == 10)
+        XCTAssert(linkedList.element(at: 3) == 2)
+        XCTAssert(linkedList.element(at: 4) == nil)
         XCTAssert(linkedList.count == 4)
     }
     
     func testInsertAtHead() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         XCTAssertNoThrow(try linkedList.insert(-1, at: 0))
         
-        XCTAssert(linkedList.value(at: 0) == -1)
-        XCTAssert(linkedList.value(at: 1) == 0)
-        XCTAssert(linkedList.value(at: 2) == 1)
-        XCTAssert(linkedList.value(at: 3) == 2)
-        XCTAssert(linkedList.value(at: 4) == nil)
+        XCTAssert(linkedList.element(at: 0) == -1)
+        XCTAssert(linkedList.element(at: 1) == 0)
+        XCTAssert(linkedList.element(at: 2) == 1)
+        XCTAssert(linkedList.element(at: 3) == 2)
+        XCTAssert(linkedList.element(at: 4) == nil)
         XCTAssert(linkedList.count == 4)
     }
     
     func testInsertAtTail() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         XCTAssertNoThrow(try linkedList.insert(3, at: 3))
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 1)
-        XCTAssert(linkedList.value(at: 2) == 2)
-        XCTAssert(linkedList.value(at: 3) == 3)
-        XCTAssert(linkedList.value(at: 4) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 1)
+        XCTAssert(linkedList.element(at: 2) == 2)
+        XCTAssert(linkedList.element(at: 3) == 3)
+        XCTAssert(linkedList.element(at: 4) == nil)
         XCTAssert(linkedList.count == 4)
     }
     
@@ -139,8 +139,8 @@ final class LinkedListTestCase: XCTestCase {
         linkedList = LinkedList()
         XCTAssertNoThrow(try linkedList.insert(0, at: 0))
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == nil)
         XCTAssert(linkedList.count == 1)
     }
     
@@ -162,128 +162,128 @@ final class LinkedListTestCase: XCTestCase {
     
     // MARK: - Tests: Pop
     func testPop() {
-        linkedList = LinkedList(values: [0, 1, 2])
-        let poppedValue = linkedList.pop()
+        linkedList = LinkedList(elements: [0, 1, 2])
+        let poppedElement = linkedList.pop()
         
-        XCTAssert(linkedList.value(at: 0) == 1)
-        XCTAssert(linkedList.value(at: 1) == 2)
-        XCTAssert(linkedList.value(at: 2) == nil)
+        XCTAssert(linkedList.element(at: 0) == 1)
+        XCTAssert(linkedList.element(at: 1) == 2)
+        XCTAssert(linkedList.element(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
-        XCTAssert(poppedValue == 0)
+        XCTAssert(poppedElement == 0)
     }
     
     func testPopWhenEmpty() {
         linkedList = LinkedList()
-        let poppedValue = linkedList.pop()
+        let poppedElement = linkedList.pop()
         
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
-        XCTAssert(poppedValue == nil)
+        XCTAssert(poppedElement == nil)
     }
     
-    func testPopForTheOnlyValue() {
-        linkedList = LinkedList(values: [0])
-        let poppedValue = linkedList.pop()
+    func testPopForTheOnlyElement() {
+        linkedList = LinkedList(elements: [0])
+        let poppedElement = linkedList.pop()
         
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
-        XCTAssert(poppedValue == 0)
+        XCTAssert(poppedElement == 0)
     }
     
     // MARK: - Tests: PopLast
     func testPopLast() {
-        linkedList = LinkedList(values: [0, 1, 2])
-        let poppedValue = linkedList.popLast()
+        linkedList = LinkedList(elements: [0, 1, 2])
+        let poppedElement = linkedList.popLast()
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 1)
-        XCTAssert(linkedList.value(at: 2) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 1)
+        XCTAssert(linkedList.element(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
-        XCTAssert(poppedValue == 2)
+        XCTAssert(poppedElement == 2)
     }
     
     func testPopLastWhenEmpty() {
         linkedList = LinkedList()
-        let poppedValue = linkedList.popLast()
+        let poppedElement = linkedList.popLast()
         
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
-        XCTAssert(poppedValue == nil)
+        XCTAssert(poppedElement == nil)
     }
     
-    func testPopLastForTheOnlyValue() {
-        linkedList = LinkedList(values: [0])
-        let poppedValue = linkedList.popLast()
+    func testPopLastForTheOnlyElement() {
+        linkedList = LinkedList(elements: [0])
+        let poppedElement = linkedList.popLast()
         
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
-        XCTAssert(poppedValue == 0)
+        XCTAssert(poppedElement == 0)
     }
     
     // MARK: - Tests: Remove
     func testRemove() {
-        linkedList = LinkedList(values: [0, 1, 2])
-        let removedValue = linkedList.remove(at: 1)
+        linkedList = LinkedList(elements: [0, 1, 2])
+        let removedElement = linkedList.remove(at: 1)
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 2)
-        XCTAssert(linkedList.value(at: 2) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 2)
+        XCTAssert(linkedList.element(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
-        XCTAssert(removedValue == 1)
+        XCTAssert(removedElement == 1)
     }
     
     func testRemoveAtFirstIndex() {
-        linkedList = LinkedList(values: [0, 1, 2])
-        let removedValue = linkedList.remove(at: 0)
+        linkedList = LinkedList(elements: [0, 1, 2])
+        let removedElement = linkedList.remove(at: 0)
         
-        XCTAssert(linkedList.value(at: 0) == 1)
-        XCTAssert(linkedList.value(at: 1) == 2)
-        XCTAssert(linkedList.value(at: 2) == nil)
+        XCTAssert(linkedList.element(at: 0) == 1)
+        XCTAssert(linkedList.element(at: 1) == 2)
+        XCTAssert(linkedList.element(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
-        XCTAssert(removedValue == 0)
+        XCTAssert(removedElement == 0)
     }
     
     func testRemoveAtLastIndex() {
-        linkedList = LinkedList(values: [0, 1, 2])
-        let removedValue = linkedList.remove(at: 2)
+        linkedList = LinkedList(elements: [0, 1, 2])
+        let removedElement = linkedList.remove(at: 2)
         
-        XCTAssert(linkedList.value(at: 0) == 0)
-        XCTAssert(linkedList.value(at: 1) == 1)
-        XCTAssert(linkedList.value(at: 2) == nil)
+        XCTAssert(linkedList.element(at: 0) == 0)
+        XCTAssert(linkedList.element(at: 1) == 1)
+        XCTAssert(linkedList.element(at: 2) == nil)
         XCTAssert(linkedList.count == 2)
-        XCTAssert(removedValue == 2)
+        XCTAssert(removedElement == 2)
     }
     
-    func testRemoveForTheOnlyValue() {
-        linkedList = LinkedList(values: [0])
-        let removedValue = linkedList.remove(at: 0)
+    func testRemoveForTheOnlyElement() {
+        linkedList = LinkedList(elements: [0])
+        let removedElement = linkedList.remove(at: 0)
         
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
-        XCTAssert(removedValue == 0)
+        XCTAssert(removedElement == 0)
     }
     
     func testRemoveAtOutOfRangeIndex() {
         linkedList = LinkedList()
-        let removedValue = linkedList.remove(at: 0)
+        let removedElement = linkedList.remove(at: 0)
         
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
-        XCTAssert(removedValue == nil)
+        XCTAssert(removedElement == nil)
     }
     
     func testRemoveAtInvalidIndex() {
         linkedList = LinkedList()
-        let removedValue = linkedList.remove(at: -1)
+        let removedElement = linkedList.remove(at: -1)
         
-        XCTAssert(linkedList.value(at: 0) == nil)
+        XCTAssert(linkedList.element(at: 0) == nil)
         XCTAssert(linkedList.count == 0)
-        XCTAssert(removedValue == nil)
+        XCTAssert(removedElement == nil)
     }
     
     // MARK: - Tests: Collection
     func testIndexEquality() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         
         XCTAssert(linkedList.startIndex == linkedList.startIndex)
         XCTAssert(linkedList.endIndex == linkedList.endIndex)
@@ -300,37 +300,37 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testStartAndEndIndex() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         
-        XCTAssert(linkedList.startIndex.value == 0)
-        XCTAssert(linkedList.startIndex.next.value == 1)
-        XCTAssert(linkedList.startIndex.next.next.value == 2)
-        XCTAssert(linkedList.startIndex.next.next.next.value == nil)
-        XCTAssert(linkedList.endIndex.value == nil)
+        XCTAssert(linkedList.startIndex.element == 0)
+        XCTAssert(linkedList.startIndex.next.element == 1)
+        XCTAssert(linkedList.startIndex.next.next.element == 2)
+        XCTAssert(linkedList.startIndex.next.next.next.element == nil)
+        XCTAssert(linkedList.endIndex.element == nil)
     }
     
     func testFirstAndEndIndexWhenEmpty() {
         linkedList = LinkedList()
         
-        XCTAssert(linkedList.startIndex.value == nil)
-        XCTAssert(linkedList.endIndex.value == nil)
+        XCTAssert(linkedList.startIndex.element == nil)
+        XCTAssert(linkedList.endIndex.element == nil)
     }
     
     func testIndexAfterIndex() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         
         var nextIndex = linkedList.index(after: linkedList.startIndex)
-        XCTAssert(nextIndex.value == 1)
+        XCTAssert(nextIndex.element == 1)
         
         nextIndex = linkedList.index(after: nextIndex)
-        XCTAssert(nextIndex.value == 2)
+        XCTAssert(nextIndex.element == 2)
         
         nextIndex = linkedList.index(after: nextIndex)
-        XCTAssert(nextIndex.value == nil)
+        XCTAssert(nextIndex.element == nil)
     }
     
     func testSubscript() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         
         XCTAssert(linkedList[0] == 0)
         XCTAssert(linkedList[1] == 1)
@@ -339,7 +339,7 @@ final class LinkedListTestCase: XCTestCase {
     
     // MARK: - Tests: Copy on write
     func testCopyOnWriteWithPush() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         var newLinkedList = linkedList!
         
         XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
@@ -365,7 +365,7 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testCopyOnWriteWithAppend() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         var newLinkedList = linkedList!
         
         XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
@@ -391,7 +391,7 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testCopyOnWriteWithInsert() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         var newLinkedList = linkedList!
         
         XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
@@ -417,7 +417,7 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testCopyOnWriteWithPop() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         var newLinkedList = linkedList!
         
         XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
@@ -443,7 +443,7 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testCopyOnWriteWithPopLast() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         var newLinkedList = linkedList!
         
         XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
@@ -469,7 +469,7 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testCopyOnWriteWithRemove() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         var newLinkedList = linkedList!
         
         XCTAssert(String(describing: linkedList!) == "0 -> 1 -> 2")
@@ -503,7 +503,7 @@ final class LinkedListTestCase: XCTestCase {
     }
     
     func testDescriptionWithNodes() {
-        linkedList = LinkedList(values: [0, 1, 2])
+        linkedList = LinkedList(elements: [0, 1, 2])
         let output = String(describing: linkedList!)
         
         XCTAssert(output == "0 -> 1 -> 2")

@@ -5,13 +5,13 @@
 //  Created by 陸瑋恩 on 2021/6/21.
 //
 
-open class Node<Value> {
+open class Node<Element> {
     
-    public var value: Value
+    public var element: Element
     public var next: Node?
     
-    public init(value: Value, next: Node? = nil) {
-        self.value = value
+    public init(element: Element, next: Node? = nil) {
+        self.element = element
         self.next = next
     }
 }
@@ -19,7 +19,7 @@ open class Node<Value> {
 extension Node: CustomStringConvertible {
     
     public var description: String {
-        var output = "\(value)"
+        var output = "\(element)"
         if let next = next {
             output += " -> \(next)"
         }

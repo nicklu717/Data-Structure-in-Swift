@@ -29,7 +29,7 @@ final class StackTestCase: XCTestCase {
     }
     
     func testCountWhenEmpty() {
-        stack = Stack<Int>(values: [0, 1, 2])
+        stack = Stack<Int>(elements: [0, 1, 2])
         
         XCTAssert(stack.count == 3)
         XCTAssert(!stack.isEmpty)
@@ -50,10 +50,10 @@ final class StackTestCase: XCTestCase {
     
     // MARK: - Tests: Pop
     func testPop() {
-        stack = Stack<Int>(values: [0, 1, 2])
-        let poppedValue = stack.pop()
+        stack = Stack<Int>(elements: [0, 1, 2])
+        let poppedElement = stack.pop()
         
-        XCTAssert(poppedValue == 2)
+        XCTAssert(poppedElement == 2)
         XCTAssert(stack.count == 2)
         XCTAssert(!stack.isEmpty)
         XCTAssert(stack.last == 1)
@@ -61,19 +61,19 @@ final class StackTestCase: XCTestCase {
     
     func testPopWhenEmpty() {
         stack = Stack<Int>()
-        let poppedValue = stack.pop()
+        let poppedElement = stack.pop()
         
-        XCTAssert(poppedValue == nil)
+        XCTAssert(poppedElement == nil)
         XCTAssert(stack.count == 0)
         XCTAssert(stack.isEmpty)
         XCTAssert(stack.last == nil)
     }
     
-    func testPopTheOnlyValue() {
-        stack = Stack<Int>(values: [0])
-        let poppedValue = stack.pop()
+    func testPopTheOnlyElement() {
+        stack = Stack<Int>(elements: [0])
+        let poppedElement = stack.pop()
         
-        XCTAssert(poppedValue == 0)
+        XCTAssert(poppedElement == 0)
         XCTAssert(stack.count == 0)
         XCTAssert(stack.isEmpty)
         XCTAssert(stack.last == nil)
@@ -97,7 +97,7 @@ final class StackTestCase: XCTestCase {
     }
     
     func testDescriptionWhenEmpty() {
-        stack = Stack<Int>(values: [0, 1, 2])
+        stack = Stack<Int>(elements: [0, 1, 2])
         let output = String(describing: stack!)
         
         XCTAssert(output == "[0, 1, 2]")

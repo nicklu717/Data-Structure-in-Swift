@@ -5,44 +5,44 @@
 //  Created by 陸瑋恩 on 2021/7/13.
 //
 
-public struct Stack<Value> {
+public struct Stack<Element> {
     
     // MARK: - Properties
-    private var values: [Value]
+    private var elements: [Element]
     
     public var count: Int {
-        return values.count
+        return elements.count
     }
     
     public var isEmpty: Bool {
-        return values.isEmpty
+        return elements.isEmpty
     }
     
-    public var last: Value? {
-        return values.last
+    public var last: Element? {
+        return elements.last
     }
     
     // MARK: - Initializer
-    public init(values: [Value] = []) {
-        self.values = values
+    public init(elements: [Element] = []) {
+        self.elements = elements
     }
     
     // MARK: - Methods
-    public mutating func push(_ value: Value) {
-        values.append(value)
+    public mutating func push(_ element: Element) {
+        elements.append(element)
     }
     
     @discardableResult
-    public mutating func pop() -> Value? {
-        return values.popLast()
+    public mutating func pop() -> Element? {
+        return elements.popLast()
     }
 }
 
 // MARK: - ExpressibleByArrayLiteral
 extension Stack: ExpressibleByArrayLiteral {
     
-    public init(arrayLiteral elements: Value...) {
-        values = elements
+    public init(arrayLiteral elements: Element...) {
+        self.elements = elements
     }
 }
 
@@ -51,7 +51,7 @@ extension Stack: CustomStringConvertible {
     
     public var description: String {
         var output = ""
-        values.forEach {
+        elements.forEach {
             if !output.isEmpty {
                 output += ", "
             }
