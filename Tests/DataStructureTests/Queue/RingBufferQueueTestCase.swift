@@ -50,15 +50,22 @@ final class RingBufferQueueTestCase: XCTestCase {
     }
     
     func testRead() {
+        XCTAssert(queue.peek == nil)
+        
         XCTAssert(queue.enqueue(0))
         XCTAssert(queue.enqueue(1))
         XCTAssert(queue.enqueue(2))
         XCTAssert(queue.enqueue(3))
+        XCTAssert(queue.peek == 0)
         
         XCTAssert(queue.dequeue() == 0)
+        XCTAssert(queue.peek == 1)
         XCTAssert(queue.dequeue() == 1)
+        XCTAssert(queue.peek == 2)
         XCTAssert(queue.dequeue() == 2)
+        XCTAssert(queue.peek == 3)
         XCTAssert(queue.dequeue() == 3)
+        XCTAssert(queue.peek == nil)
         XCTAssert(queue.count == 0)
         
         XCTAssert(queue.dequeue() == nil)
