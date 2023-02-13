@@ -7,10 +7,19 @@
 
 public class BinarySearchTree<Element> {
     
+    public enum Comparison {
+        case lessThan
+        case equal
+        case largerThan
+    }
+    
+    private let compare: (Element, Element) -> Comparison
+    
     private var root: BinaryNode<Element>?
     
-    public init(element: Element? = nil) {
-        root = element.map { BinaryNode(element: $0) }
+    public init(element: Element? = nil, compare: @escaping (Element, Element) -> Comparison) {
+        self.root = element.map { BinaryNode(element: $0) }
+        self.compare = compare
     }
     
     public func insert(element: Element) {
@@ -22,6 +31,21 @@ public class BinarySearchTree<Element> {
     }
     
     private func _insert(element: Element, compareTo node: BinaryNode<Element>) {
-        
+        switch compare(element, node.element) {
+        case .lessThan:
+            if let leftNode = node.left {
+                _insert(element: element, compareTo: leftNode)
+            } else {
+                node.left = BinaryNode(element: element)
+            }
+        case .equal:
+            return
+        case .largerThan:
+            if let rightNode = node.right {
+                _insert(element: element, compareTo: rightNode)
+            } else {
+                node.right = BinaryNode(element: element)
+            }
+        }
     }
 }
