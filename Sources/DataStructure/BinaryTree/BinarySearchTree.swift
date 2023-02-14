@@ -46,4 +46,8 @@ public class BinarySearchTree<Element>: BinaryTree<Element> {
             }
         }
     }
+    
+    public func sorted() -> [Element] {
+        traverse(mode: .inorder)
+    }
 }

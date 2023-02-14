@@ -70,4 +70,26 @@ class BinarySearchTreeTests: XCTestCase {
         XCTAssertNil(tree.root?.left)
         XCTAssertNil(tree.root?.right)
     }
+    
+    func testSorted() {
+        let tree = BinarySearchTree<Int>(element: nil, compare: {
+            switch $0 {
+            case ..<$1:
+                return .lessThan
+            case $1:
+                return .equal
+            default:
+                return .largerThan
+            }
+        })
+        
+        tree.insert(element: 9)
+        tree.insert(element: 23)
+        tree.insert(element: 3)
+        tree.insert(element: 9)
+        tree.insert(element: 1)
+        tree.insert(element: 7)
+        tree.insert(element: 12)
+        XCTAssertEqual(tree.sorted(), [1, 3, 7, 9, 12, 23])
+    }
 }
