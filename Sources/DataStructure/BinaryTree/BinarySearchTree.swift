@@ -47,7 +47,7 @@ public class BinarySearchTree<Element>: BinaryTree<Element> {
         }
     }
     
-    public func sorted() -> [Element] {
-        traverse(mode: .inorder)
+    public func sorted(limit: Int? = nil) -> [Element] {
+        traverse(mode: .inorder, limit: limit)
     }
 }

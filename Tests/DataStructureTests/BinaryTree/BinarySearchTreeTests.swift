@@ -91,5 +91,6 @@ class BinarySearchTreeTests: XCTestCase {
         tree.insert(element: 7)
         tree.insert(element: 12)
         XCTAssertEqual(tree.sorted(), [1, 3, 7, 9, 12, 23])
+        XCTAssertEqual(tree.sorted(limit: 4), [1, 3, 7, 9])
     }
 }

@@ -60,5 +60,9 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertEqual(tree.traverse(mode: .preorder), [0, 1, 3, 4, 2, 5, 6])
         XCTAssertEqual(tree.traverse(mode: .inorder), [3, 1, 4, 0, 5, 2, 6])
         XCTAssertEqual(tree.traverse(mode: .postorder), [3, 4, 1, 5, 6, 2, 0])
+        
+        XCTAssertEqual(tree.traverse(mode: .preorder, limit: 4), [0, 1, 3, 4])
+        XCTAssertEqual(tree.traverse(mode: .inorder, limit: 4), [3, 1, 4, 0])
+        XCTAssertEqual(tree.traverse(mode: .postorder, limit: 4), [3, 4, 1, 5])
     }
 }
