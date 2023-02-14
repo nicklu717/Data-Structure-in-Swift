@@ -13,7 +13,7 @@ public class BinaryTree<Element> {
         case postorder
     }
     
-    private var root: BinaryNode<Element>?
+    public var root: BinaryNode<Element>?
     
     public init(element: Element?) {
         root = element.map { BinaryNode(element: $0) }

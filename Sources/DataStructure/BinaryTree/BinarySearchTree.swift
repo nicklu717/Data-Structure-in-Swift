@@ -5,7 +5,7 @@
 //  Created by 陸瑋恩 on 2023/2/13.
 //
 
-public class BinarySearchTree<Element> {
+public class BinarySearchTree<Element>: BinaryTree<Element> {
     
     public enum Comparison {
         case lessThan
@@ -15,11 +15,9 @@ public class BinarySearchTree<Element> {
     
     private let compare: (Element, Element) -> Comparison
     
-    private var root: BinaryNode<Element>?
-    
-    public init(element: Element? = nil, compare: @escaping (Element, Element) -> Comparison) {
-        self.root = element.map { BinaryNode(element: $0) }
+    public init(element: Element?, compare: @escaping (Element, Element) -> Comparison) {
         self.compare = compare
+        super.init(element: element)
     }
     
     public func insert(element: Element) {
