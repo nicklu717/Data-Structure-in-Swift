@@ -19,25 +19,27 @@ public class BinaryTree<Element> {
         rootNode = element.map { BinaryNode(element: $0) }
     }
     
-    public func traverse(mode: TraversalMode) {
-        _traverse(mode: mode, node: rootNode)
+    public func traverse(mode: TraversalMode) -> [Element] {
+        var traversedElements: [Element] = []
+        _traverse(mode: mode, node: rootNode, traversedElements: &traversedElements)
+        return traversedElements
     }
     
-    private func _traverse(mode: TraversalMode, node: BinaryNode<Element>?) {
+    private func _traverse(mode: TraversalMode, node: BinaryNode<Element>?, traversedElements: inout [Element]) {
         guard let node = node else { return }
         switch mode {
         case .preorder:
-            print(node.element)
-            _traverse(mode: mode, node: node.left)
-            _traverse(mode: mode, node: node.right)
+            traversedElements.append(node.element)
+            _traverse(mode: mode, node: node.left, traversedElements: &traversedElements)
+            _traverse(mode: mode, node: node.right, traversedElements: &traversedElements)
         case .inorder:
-            _traverse(mode: mode, node: node.left)
-            print(node.element)
-            _traverse(mode: mode, node: node.right)
+            _traverse(mode: mode, node: node.left, traversedElements: &traversedElements)
+            traversedElements.append(node.element)
+            _traverse(mode: mode, node: node.right, traversedElements: &traversedElements)
         case .postorder:
-            _traverse(mode: mode, node: node.left)
-            _traverse(mode: mode, node: node.right)
-            print(node.element)
+            _traverse(mode: mode, node: node.left, traversedElements: &traversedElements)
+            _traverse(mode: mode, node: node.right, traversedElements: &traversedElements)
+            traversedElements.append(node.element)
         }
     }
 }
