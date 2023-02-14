@@ -13,32 +13,32 @@ public class BinaryTree<Element> {
         case postorder
     }
     
-    private var rootNode: BinaryNode<Element>?
+    private var root: BinaryNode<Element>?
     
     public init(element: Element?) {
-        rootNode = element.map { BinaryNode(element: $0) }
+        root = element.map { BinaryNode(element: $0) }
     }
     
     public func traverse(mode: TraversalMode) -> [Element] {
         var traversedElements: [Element] = []
-        _traverse(mode: mode, node: rootNode, traversedElements: &traversedElements)
+        _traverse(by: mode, from: root, traversedElements: &traversedElements)
         return traversedElements
     }
     
-    private func _traverse(mode: TraversalMode, node: BinaryNode<Element>?, traversedElements: inout [Element]) {
+    private func _traverse(by mode: TraversalMode, from node: BinaryNode<Element>?, traversedElements: inout [Element]) {
         guard let node = node else { return }
         switch mode {
         case .preorder:
             traversedElements.append(node.element)
-            _traverse(mode: mode, node: node.left, traversedElements: &traversedElements)
-            _traverse(mode: mode, node: node.right, traversedElements: &traversedElements)
+            _traverse(by: mode, from: node.left, traversedElements: &traversedElements)
+            _traverse(by: mode, from: node.right, traversedElements: &traversedElements)
         case .inorder:
-            _traverse(mode: mode, node: node.left, traversedElements: &traversedElements)
+            _traverse(by: mode, from: node.left, traversedElements: &traversedElements)
             traversedElements.append(node.element)
-            _traverse(mode: mode, node: node.right, traversedElements: &traversedElements)
+            _traverse(by: mode, from: node.right, traversedElements: &traversedElements)
         case .postorder:
-            _traverse(mode: mode, node: node.left, traversedElements: &traversedElements)
-            _traverse(mode: mode, node: node.right, traversedElements: &traversedElements)
+            _traverse(by: mode, from: node.left, traversedElements: &traversedElements)
+            _traverse(by: mode, from: node.right, traversedElements: &traversedElements)
             traversedElements.append(node.element)
         }
     }
